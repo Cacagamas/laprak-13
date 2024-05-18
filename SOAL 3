@@ -1,1 +1,26 @@
+def read_file(file_name):
+    try:
+        with open(file_name, 'r') as file:
+            return set(file.read().lower().split())
+    except FileNotFoundError:
+        print(f"Error: File '{file_name}' tidak ditemukan.")
+        return set()
+    except Exception as e:
+        print(f"Error: {e}")
+        return set()
 
+# Input nama file
+file1_name = input("Masukkan nama file teks pertama: ")
+file2_name = input("Masukkan nama file teks kedua: ")
+
+# Baca isi kedua file
+file1_words = read_file(file1_name)
+file2_words = read_file(file2_name)
+
+# Temukan kata-kata yang sama pada kedua file
+common_words = file1_words & file2_words
+
+# Tampilkan kata-kata yang sama
+print("Kata-kata yang muncul pada kedua file:")
+for word in common_words:
+    print(word)
