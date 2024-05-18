@@ -1,0 +1,57 @@
+# Input jumlah kategori
+n = int(input('Masukkan jumlah kategori: '))
+
+# Siapkan dictionary kosong
+data_aplikasi = {}
+
+# Input nama kategori dan aplikasi di dalamnya
+for i in range(n):
+    nama_kategori = input('Masukkan nama kategori: ')
+    print('Masukkan 5 nama aplikasi di kategori', nama_kategori)
+    # Siapkan list kosong untuk nama-nama aplikasi
+    aplikasi = []
+    for j in range(5):
+        nama_aplikasi = input('Nama aplikasi: ')
+        aplikasi.append(nama_aplikasi)
+    # Masukkan dalam dictionary
+    data_aplikasi[nama_kategori] = aplikasi
+
+# Tampilkan dictionary data_aplikasi
+print(data_aplikasi)
+
+# Siapkan list untuk menampung set aplikasi dari setiap kategori
+daftar_aplikasi_list = []
+
+# Ambil semua daftar aplikasi dari setiap kategori dan ubah menjadi set
+for aplikasi in data_aplikasi.values():
+    daftar_aplikasi_list.append(set(aplikasi))
+
+print("Set aplikasi dari setiap kategori:", daftar_aplikasi_list)
+
+# Lakukan intersection ke semua set yang ada
+if daftar_aplikasi_list:
+    # Aplikasi yang muncul di semua kategori
+    hasil = daftar_aplikasi_list[0]
+    for i in range(1, len(daftar_aplikasi_list)):
+        hasil = hasil.intersection(daftar_aplikasi_list[i])
+    print("Aplikasi yang ada di semua kategori:", hasil)
+
+    # Aplikasi yang hanya muncul di satu kategori saja
+    all_apps = set().union(*daftar_aplikasi_list)
+    apps_in_single_category = set()
+    for app in all_apps:
+        count = sum(app in aplikasi for aplikasi in daftar_aplikasi_list)
+        if count == 1:
+            apps_in_single_category.add(app)
+    print("Aplikasi yang hanya muncul di satu kategori:", apps_in_single_category)
+
+    # Aplikasi yang muncul tepat di dua kategori (untuk n > 2)
+    if n > 2:
+        apps_in_two_categories = set()
+        for app in all_apps:
+            count = sum(app in aplikasi for aplikasi in daftar_aplikasi_list)
+            if count == 2:
+                apps_in_two_categories.add(app)
+        print("Aplikasi yang muncul tepat di dua kategori:", apps_in_two_categories)
+else:
+    print("Tidak ada kategori yang dimasukkan.")
