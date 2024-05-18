@@ -1,0 +1,43 @@
+def remove_duplicates(data):
+    unique_data = []
+    for item in data:
+        if item not in unique_data:
+            unique_data.append(item)
+    return unique_data
+
+def merge_tuples(tuple1, tuple2):
+    merged_tuple = tuple1 + tuple2
+    return merged_tuple
+
+# Data awal
+list_data = [1, 2, 3, 4, 5, 1, 2, 3]
+set_data = {5, 6, 7, 8, 9}
+tuple_data = (9, 10, 11, 12, 13)
+tuple_data_2 = (14, 15, 16)
+
+# Tampilkan data sebelum konversi
+print("Data sebelum konversi:")
+print("List:", list_data)
+print("Set:", set_data)
+print("Tuple:", tuple_data)
+print()
+
+# Manipulasi data sebelum konversi
+list_data = remove_duplicates(list_data)
+tuple_data = merge_tuples(tuple_data, tuple_data_2)
+
+# Konversi List menjadi Set
+set_from_list = set(list_data)
+print("Konversi List menjadi Set:", set_from_list)
+
+# Konversi Set menjadi List
+list_from_set = list(set_data)
+print("Konversi Set menjadi List:", list_from_set)
+
+# Konversi Tuple menjadi Set
+set_from_tuple = set(tuple_data)
+print("Konversi Tuple menjadi Set:", set_from_tuple)
+
+# Konversi Set menjadi Tuple
+tuple_from_set = tuple(list_data)
+print("Konversi Set menjadi Tuple:", tuple_from_set)
